@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const jobSchema = new Schema({
-<<<<<<< HEAD
-    
-})
-=======
   company: {
     type: String, 
     required: [true, 'please provide company'], 
@@ -28,7 +24,6 @@ const jobSchema = new Schema({
     required: [true, 'please provide user']
   }
 }, {timestamps: true})
->>>>>>> 6b709c3 (handling validation mongoose and cast errors for the api)
 
 const Job = mongoose.model('Job', jobSchema);
 
