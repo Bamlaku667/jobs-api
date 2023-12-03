@@ -25,10 +25,10 @@ const errorHandler = (err, req, res, next) => {
 
   // handle cast error
   if (err.name === "CastError") {
-    customError.msg = `No item found with id: ${err.value}`;
+    customError.msg = `No item found with id: ${err.value._id}`;
     customError.statusCode = 404;
   }
-//   return res.status(customError.statusCode).json({ msg: err });
+  // return res.status(customError.statusCode).json({ msg: err });
   return res.status(customError.statusCode).json({ msg: customError.msg });
 };
 
