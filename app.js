@@ -34,16 +34,16 @@ app.use(helmet());
 app.use(cors());
 app.use(xss());
 app.use(limiter);
-// swagger 
-const swaggerUI = require('swagger-ui-express');
-const YAML = require('yamljs')
-const swaggerDocument = YAML.load('./swagger.yaml');
+// swagger
+const swaggerUI = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("./swagger.yaml");
 
 app.get("/", (req, res) => {
-  res.send("<h1>MY JOBS API DOCUMENTATION</h1> <a href ='/api-docs'>Go To Documentation</a>");
+  re.render("index");
 });
 
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", authenticateUser, jobRouter);
 
