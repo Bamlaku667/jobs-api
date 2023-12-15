@@ -34,53 +34,16 @@ app.use(helmet());
 app.use(cors());
 app.use(xss());
 app.use(limiter);
-// swagger
-const swaggerUI = require("swagger-ui-express");
-const YAML = require("yamljs");
-const swaggerDocument = YAML.load("./swagger.yaml");
+// swagger 
+const swaggerUI = require('swagger-ui-express');
+const YAML = require('yamljs')
+const swaggerDocument = YAML.load('./swagger.yaml');
 
-app.get("/", (req, res) => {
-  app.get("/", (req, res) => {
-    const htmlContent = `
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MY JOBS API DOCUMENTATION</title>
-        <style>
-          body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            padding: 20px;
-          }
-          h1 {
-            color: #333;
-          }
-          a {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #4285f4;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-          }
-        </style>
-      </head>
-      <body>
-        <h1>MY JOBS API DOCUMENTATION</h1>
-        <a href="/api-docs">Go To Documentation</a>
-      </body>
-      </html>
-    `;
+// app.get("/", (req, res) => {
+//   res.send("<h1>MY JOBS API DOCUMENTATION</h1> <a href ='/api-docs'>Go To Documentation</a>");
+// });
 
-    res.send(htmlContent);
-  });
-});
-
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", authenticateUser, jobRouter);
 
